@@ -1,0 +1,29 @@
+<p>
+  dashboard works!
+</p>
+
+<!-- <agm-map [latitude]="lati" [longitude]="lngi" (mapClick)="onChoseLocation($event)">
+  <agm-marker
+    [latitude]="lati"
+    [longitude]="lngi"
+    *ngIf='xinService.clients'>
+  </agm-marker>
+</agm-map> -->
+
+<agm-map [latitude]="lati" [longitude]="lngi" (mapClick)="onChoseLocation($event)">
+    <agm-marker *ngFor="let point of clients;" [latitude]="point.latitude" [longitude]="point.longitude">
+        <agm-info-window>{{point.name | json}}</agm-info-window>
+    </agm-marker>
+</agm-map>
+
+
+<!-- <ng-container *ngIf='clientIsNotEmpty'> -->
+  <!-- <a *ngFor="let t of clients">
+    <!-- <p>{{t.longitude}}</p> -->
+    <!-- <agm-marker [latitude]='{{t.longitude}}' [longitude]='{{t.longitude}}'> </agm-marker> -->
+  <!-- </a> -->
+<!-- </ng-container> -->
+
+<!-- <agm-marker [latitude]="lati" [longitude]="lngi"></agm-marker>
+   <agm-marker *ngFor="let data of clients; let i = index" [latitude]="data.latitude" [longitude]="data.longitude">
+ </agm-marker> -->
