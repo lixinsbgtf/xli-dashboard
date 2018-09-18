@@ -19,7 +19,7 @@ import { Dashboardv2Component } from './dashboardv2/dashboardv2.component';
     BrowserModule,
     HttpClientModule,
     AgmCoreModule.forRoot ({
-      apiKey: 'AIzaSyAwxZQZxruxMKJVKGS6YDe8mJDFoEf61Xc'
+      apiKey: 'YOUR_GOOGLE_MAP_API_KEY'
     }),
 
     HttpClientInMemoryWebApiModule.forRoot(
