@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+// import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
+import { XinServiceService } from './xin-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'xli-app';
+
+  constructor(private xinService: XinServiceService) { }
+
+  search(text){
+    this.xinService.setSearchText(text);
+  }
 }

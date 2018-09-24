@@ -1,7 +1,7 @@
-<p>
+<!-- <p>
   *** Please apply your own Google Map API Key to use this service.
   After you get your API key, add it to /src/app/module.ts 
-</p>
+</p> -->
 
 <!-- <agm-map [latitude]="lati" [longitude]="lngi" (mapClick)="onChoseLocation($event)">
   <agm-marker
@@ -11,13 +11,36 @@
   </agm-marker>
 </agm-map> -->
 
-<agm-map [latitude]="lati" [longitude]="lngi" (mapClick)="onChoseLocation($event)">
-    <agm-marker *ngFor="let point of clients;" [latitude]="point.latitude" [longitude]="point.longitude">
-        <agm-info-window>{{point.name | json}}</agm-info-window>
+<!-- (mapClick)="onChoseLocation($event)" -->
+<agm-map [latitude]="lati" [longitude]="lngi" [zoom]=4 fullscreenControl=false>
+    <agm-marker *ngFor="let point of clients; let i = index;" (markerClick)="clickedMarker(infoWindow, i)" [latitude]="point.latitude" [longitude]="point.longitude">
+        <agm-info-window #infoWindow>
+          <div style="display:flex;width:400px;height:200px;color: cornflowerblue; background-color:white;">
+            
+              <img style="height:auto; width:auto; max-width:100px;" src="https://images.unsplash.com/photo-1485368647436-ff0fb9990605?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4235040dd51e1a04bda747f28d92f9e6&auto=format&fit=crop&w=1949&q=80">
+              <div style="width:100%;height:100%;display: flex; flex-direction:column; font-size:22px; ">
+                  <div class="item" style="width:100%; background-color: cornflowerblue; color: white; text-align: center;">
+                      {{point.name}}
+                  </div>
+                  <div  class="item">
+                      {{point.address}}
+                  </div>
+                  <div  class="item">
+                      {{point.contact}}
+                  </div>
+                  <div style="height: 100%;">
+
+                  </div>
+                  <div class="item" style="margin-bottom: 30px;">
+                      <button style="float:right; " type="button" class="btn btn-primary" (click)="showDetails(point.id)">Details</button>
+                  </div>
+              </div>
+              
+            </div>  
+          
+        </agm-info-window>
     </agm-marker>
 </agm-map>
-
-
 <!-- <ng-container *ngIf='clientIsNotEmpty'> -->
   <!-- <a *ngFor="let t of clients">
     <!-- <p>{{t.longitude}}</p> -->

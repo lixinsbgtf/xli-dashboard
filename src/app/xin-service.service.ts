@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from './client';
@@ -15,15 +15,25 @@ export class XinServiceService {
 
   private heroesUrl = 'api/clients';  // URL to web api
 
+  searchTextSubject: Subject<boolean> = new Subject<boolean> ();
+  searchText: string;
   clients: Client[] = [];
 
-  getClients ():  Observable < Client[] > {
+  setSearchText(text: string) {
+    this.searchText = text;
+    this.searchTextSubject.next(true);
+  }
+
+  getClientsAsync ():  Observable < Client[] > {
     return this.http.get<Client[]>(this.heroesUrl).pipe(
       tap(clients => console.log('fetched clients')),
       tap(clients => console.log(clients)),
-      tap(clients => this.clients = clients),
       catchError(this.handleError('getHeroes', []))
     );
+  }
+
+  getClients() {
+    return this.getClientsAsync();
   }
 
     /**
