@@ -27,7 +27,7 @@ import { MatInputModule } from '@angular/material';
     MatExpansionModule,
     MatInputModule,
     AgmCoreModule.forRoot ({
-      apiKey: 'AIzaSyD0slKa_v2dz36Fs2r5T-NJF3FfGzZxycg'
+      apiKey: 'YOUR_API_KEY'
     }),
 
     HttpClientInMemoryWebApiModule.forRoot(
